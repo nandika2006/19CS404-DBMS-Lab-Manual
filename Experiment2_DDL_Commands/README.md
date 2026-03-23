@@ -105,123 +105,209 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+    Insert all students from Archived_students table into the Student_details table.
+    
+    cid         name        type        notnull     dflt_value  pk
+    ----------  ----------  ----------  ----------  ----------  ----------
+    0           RollNo      INT           0                       1
+    1           Name        VARCHAR(100)  0                       0
+    2           Gender      VARCHAR(10)   0                       0
+    3           Subject     VARCHAR(50)   0                       0
+    4           MARKS       INT           0                       0
 
 ```sql
--- Paste your SQL code below for Question 1
+insert into
+Student_details(RollNo,Name,Gender,Subject,MARKS)
+select RollNo,Name,Gender,Subject,MARKS 
+from Archived_students;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1224" height="407" alt="image" src="https://github.com/user-attachments/assets/39fa1a23-9e75-4ed6-9f0e-12717798a508" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+    Create a table named Employees with the following constraints:
+    
+    EmployeeID should be the primary key.
+    FirstName and LastName should be NOT NULL.
+    Email should be unique.
+    Salary should be greater than 0.
+    DepartmentID should be a foreign key referencing the Departments table.
 
 ```sql
--- Paste your SQL code below for Question 2
+create table Employees(
+EmployeeID int primary key,
+FirstName varchar(50) not null,
+LastName varchar(50) not null,
+Email varchar(100) UNIQUE,
+Salary decimal(10,2) CHECK (Salary>0),
+DepartmentID int,
+foreign key (DepartmentID) references Departments(DepartmentID));
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1228" height="549" alt="image" src="https://github.com/user-attachments/assets/0752ae84-4cd5-4ea6-a77f-c555535625d4" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+    Write a SQL query to Add a new column State as text in the Student_details table.
+    
+    Sample table: Student_details
+    
+     cid              name             type   notnull     dflt_value  pk
+    ---------------  ---------------  -----  ----------  ----------  ----------
+    0                RollNo           int    0                       1
+    1                Name             VARCH  1                       0
+    2                Gender           TEXT   1                       0
+    3                Subject          VARCH  0                       0
+    4                MARKS            INT (  0                       0
 
 ```sql
--- Paste your SQL code below for Question 3
+alter table Student_details
+add column State TEXT;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1214" height="481" alt="image" src="https://github.com/user-attachments/assets/8ceb3398-717c-4c8e-aecb-800471f30983" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+    Create a table named Department with the following constraints:
+    DepartmentID as INTEGER should be the primary key.
+    DepartmentName as TEXT should be unique and not NULL.
+    Location as TEXT.
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE Department(
+DepartmentID int primary key,
+DepartmentName text unique not null,
+Location text
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1218" height="393" alt="image" src="https://github.com/user-attachments/assets/0f266d5c-f25b-4788-a0a8-26e6cc4cdc6b" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+    Insert a product with ProductID 104, Name Tablet, and Category Electronics into the Products table, where Price and Stock should use default values.
 
 ```sql
--- Paste your SQL code below for Question 5
+insert into products(ProductID, Name, Category)
+VALUES (104,'Tablet','Electronics');
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1210" height="348" alt="image" src="https://github.com/user-attachments/assets/d174ed5c-1ad4-48ba-ab16-e4c6b0b8daa3" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+    Insert the following products into the Products table:
+    
+    Name        Category     Price       Stock
+    ----------  -----------  ----------  ----------
+    Smartphone  Electronics  800         150
+    Headphones  Accessories  200         300
 
 ```sql
--- Paste your SQL code below for Question 6
+INSERT INTO Products(Name, Category, Price, Stock)
+VALUES ('Smartphone','Electronics',800,150),('Headphones','Accessories',200,300);
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1220" height="392" alt="image" src="https://github.com/user-attachments/assets/ccedce2b-e14a-4415-bea0-30f13580773c" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+    Write an SQL command can to add a column named email of type TEXT to the customers table
 
 ```sql
--- Paste your SQL code below for Question 7
+ALTER TABLE customers
+add column email TEXT;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1216" height="405" alt="image" src="https://github.com/user-attachments/assets/599b8afb-bd38-44e5-b0c7-828901f44586" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+    Create a table named Locations with the following columns:
+    
+    LocationID as INTEGER
+    LocationName as TEXT
+    Address as TEXT
 
 ```sql
--- Paste your SQL code below for Question 8
+CREATE TABLE Locations(
+LocationID INTEGER,
+LocationName TEXT,
+Address TEXT
+);
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1221" height="493" alt="image" src="https://github.com/user-attachments/assets/efc972f9-ed38-46f6-95a8-0b7fb7a1ac48" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+    Create a table named ProjectAssignments with the following constraints:
+    AssignmentID as INTEGER should be the primary key.
+    EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+    ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+    AssignmentDate as DATE should be NOT NULL.
 
 ```sql
--- Paste your SQL code below for Question 9
+PRAGMA foreign_keys = ON;
+CREATE TABLE ProjectAssignments(
+AssignmentID INTEGER PRIMARY KEY,
+EmployeeID INTEGER,
+FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID),
+ProjectID INTEGER,
+FOREIGN KEY(ProjectID) REFERENCES Projects(ProjectsID), 
+AssignmentDate DATE NOT NULL
+);
+INSERT INTO ProjectAssignments (AssignmentID, EmployeeID, ProjectID, AssignmentDate) VALUES (1, 1, 1, '2024-01-02');
+select * from ProjectAssignments; 
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1207" height="547" alt="image" src="https://github.com/user-attachments/assets/805ba8e0-e956-44de-b9ee-feb72025f859" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+    Create a table named Products with the following constraints:
+    ProductID as INTEGER should be the primary key.
+    ProductName as TEXT should be unique and not NULL.
+    Price as REAL should be greater than 0.
+    StockQuantity as INTEGER should be non-negative.
 
 ```sql
--- Paste your SQL code below for Question 10
+
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1166" height="577" alt="image" src="https://github.com/user-attachments/assets/a89b2d56-476b-4bab-aba5-1101932b73b7" />
+
 
 
 ## RESULT
